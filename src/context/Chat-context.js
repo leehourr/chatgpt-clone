@@ -5,6 +5,7 @@ const ChatContext = React.createContext({
   newChat: null,
   removeChatHandler: () => {},
   addChatHandler: () => {},
+  catchError: () => {},
 });
 
 export default ChatContext;

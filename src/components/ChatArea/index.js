@@ -9,6 +9,7 @@ const Index = () => {
   const inputRef = useRef("");
   const chatCtx = useContext(ChatContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -25,12 +26,14 @@ const Index = () => {
           sender: "chatgpt",
           text: res.data.choices[0].message.content,
         });
+        setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        setIsLoading(false);
+        setHasError(true);
       }
     }
     inputRef.current.focus();
-    setIsLoading(false);
   };
 
   return (
@@ -38,7 +41,9 @@ const Index = () => {
       <header className="flex items-center justify-between mx-2"></header>
       <section className="flex-grow flex items-center justify-center w-full overflow-y-auto">
         {chatCtx.newChat && <HomePage />}
-        {!chatCtx.newChat && <ChatArea isLoading={isLoading} />}
+        {!chatCtx.newChat && (
+          <ChatArea isLoading={isLoading} hasError={hasError} />
+        )}
       </section>
       <section className="w-full px-6 md:w-[47.9rem] ">
         <form

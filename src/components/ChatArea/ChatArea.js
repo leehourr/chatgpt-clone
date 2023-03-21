@@ -4,7 +4,7 @@ import chatGpt from "../../assets/chatgpt-icon.png";
 import ChatContext from "../../context/Chat-context";
 import sinking from "../../assets/sinking.png";
 
-const Index = ({ isLoading }) => {
+const Index = ({ isLoading, hasError }) => {
   const chatCtx = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
   useMemo(() => {
@@ -12,7 +12,7 @@ const Index = ({ isLoading }) => {
   }, [chatCtx]);
   console.log(isLoading);
   return (
-    <main className="flex flex-col justify-start w-full h-full">
+    <main className="flex flex-col justify-start w-full h-full text-[15px]">
       {messages.map((i, index) =>
         i.sender === "user" ? (
           <section
@@ -44,6 +44,16 @@ const Index = ({ isLoading }) => {
               alt=""
             />
             <h1 className="text-lg sm:text-2xl font-semibold">Sinking...</h1>
+          </div>
+        </section>
+      )}
+      {hasError && (
+        <section className="w-full px-6 md:px-0 bg-[#444654] border-t-[1px] border-t-black/40">
+          <div className="w-full md:w-[45%] flex items-start justify-start mx-auto py-7  gap-[13px]">
+            <img className="w-8 h-8 rounded-sm" src={chatGpt} alt="" />
+            <h1 className="bg-red-700/20 border-[1px] border-red-700 rounded-lg px-3 py-2">
+              Sonething went wrong, please try reloading the conversation.
+            </h1>
           </div>
         </section>
       )}
