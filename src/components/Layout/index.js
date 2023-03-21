@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 const Index = () => {
   return (
     <div className="flex items-center w-full text-white text-[10px]">
-      <div className="w-[12rem] px-2 h-screen bg-[#202123] flex flex-col items-center justify-between">
+      <div className="w-[11.5rem] px-2 h-screen bg-[#202123] flex flex-col items-center justify-between">
         <button className="w-full text-left pl-3 mt-2 py-2 border-[1px] border-white/30 rounded-md cursor-pointer hover:bg-white/5">
           + New chat
         </button>
@@ -15,7 +15,7 @@ const Index = () => {
           <p>&copy; 2023 ChatGPT clone - Leang Lyhour</p>
         </footer>
       </div>
-      <main className="bg-[#444654] w-full h-screen">
+      <main className="bg-[#444654] flex-1 h-screen">
         <Outlet />
       </main>
     </div>
