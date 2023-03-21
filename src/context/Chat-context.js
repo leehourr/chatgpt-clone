@@ -2,7 +2,7 @@ import React from "react";
 
 const ChatContext = React.createContext({
   chat: [],
-  newChat: false,
+  newChat: null,
   removeChatHandler: () => {},
   addChatHandler: () => {},
 });

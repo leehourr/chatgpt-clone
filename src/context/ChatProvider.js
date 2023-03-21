@@ -3,7 +3,7 @@ import ChatContext from "./Chat-context";
 
 const ChatProvider = (props) => {
   const [chat, setChat] = useState([]);
-  const [newChat, setNewChat] = useState(false);
+  const [newChat, setNewChat] = useState(true);
 
   const removeChatHandler = () => {
     setNewChat(true);
@@ -12,7 +12,7 @@ const ChatProvider = (props) => {
 
   const addChatHandler = (input) => {
     setNewChat(false);
-    setChat((prev) => [...prev, input]);
+    setChat([input]);
   };
 
   const value = {

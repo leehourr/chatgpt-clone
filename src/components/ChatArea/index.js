@@ -1,36 +1,30 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import HomePage from "./HomePage";
 import ChatArea from "./ChatArea";
 import sendIcon from "../../assets/send_icon.png";
 import ChatContext from "../../context/Chat-context";
+import { askChatGpt } from "../../utils/api";
 
 const Index = () => {
-  const inputRef = useRef();
+  const inputRef = useRef("");
   const chatCtx = useContext(ChatContext);
-  useEffect(() => {
-    console.log(chatCtx.newChat);
-  }, [chatCtx]);
 
-  const inputHandler = (e) => {
-    // console.log(e);
+  const submitHandler = async (e) => {
+    e.preventDefault();
     const input = inputRef.current.value;
-    if (e.code === "Enter" || e.type === "click") {
-      // console.log(input);
-      chatCtx.addChatHandler({ from: "user", text: input });
+    if (input.trim() !== "") {
+      chatCtx.addChatHandler({ sender: "user", text: input });
       inputRef.current.value = "";
+      const res = await askChatGpt(input);
+      console.log(res);
+      chatCtx.addChatHandler({
+        sender: "chatgpt",
+        text: res.data.choices[0].message.content,
+      });
+      return;
     }
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    // if (inputValue.trim() !== "") {
-    //   const response = await axios.post("/api/chatgpt", {
-    //     message: inputValue,
-    //   });
-    //   setMessages([...messages, { text: inputValue, user: true }]);
-    //   setMessages([...messages, { text: response.data.message, user: false }]);
-    //   setInputValue("");
-    // }
+    inputRef.current.focus();
+    return;
   };
 
   return (
@@ -41,21 +35,24 @@ const Index = () => {
         {!chatCtx.newChat && <ChatArea />}
       </div>
 
-      <div className="relative w-full md:w-[32.5rem] shadow-lg shadow-black/10">
+      <form
+        onSubmit={submitHandler}
+        className="relative w-full md:w-[32.5rem] shadow-lg shadow-black/10"
+      >
         <input
           ref={inputRef}
           defaultValue=""
-          onKeyDown={inputHandler}
           className="w-full  bg-[#40414F] py-2 rounded-md outline-none pl-3 text-[10px] "
           type="text"
         />
-        <img
-          onClick={inputHandler}
-          className="absolute invert opacity-50 cursor-pointer top-[0.35rem] hover:bg-white/90 right-2 w-5 p-1 rounded-md"
-          src={sendIcon}
-          alt=""
-        />
-      </div>
+        <button type="submit">
+          <img
+            className="absolute invert opacity-50 cursor-pointer top-[0.35rem] hover:bg-white/90 right-2 w-5 p-1 rounded-md"
+            src={sendIcon}
+            alt=""
+          />
+        </button>
+      </form>
     </div>
   );
 };
