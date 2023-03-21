@@ -17,13 +17,17 @@ const Index = () => {
     const input = inputRef.current.value;
     if (input.trim() !== "") {
       chatCtx.addChatHandler({ sender: "user", text: input });
-      inputRef.current.value = "";
-      const res = await askChatGpt(input);
-      console.log(res);
-      chatCtx.addChatHandler({
-        sender: "chatgpt",
-        text: res.data.choices[0].message.content,
-      });
+      try {
+        inputRef.current.value = "";
+        const res = await askChatGpt(input);
+        console.log(res);
+        chatCtx.addChatHandler({
+          sender: "chatgpt",
+          text: res.data.choices[0].message.content,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
     inputRef.current.focus();
     setIsLoading(false);
@@ -44,7 +48,7 @@ const Index = () => {
           <input
             ref={inputRef}
             defaultValue=""
-            className="w-full bg-[#40414F] py-4 rounded-md outline-none pl-3 text-[10px] "
+            className="w-full bg-[#40414F] py-3 rounded-md outline-none pl-3 text-[15px] "
             type="text"
           />
           <button type="submit">

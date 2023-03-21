@@ -17,33 +17,33 @@ const Index = ({ isLoading }) => {
         i.sender === "user" ? (
           <section
             key={index}
-            className="w-full px-6 md:px-0 md:w-[45%] flex items-center justify-start gap-[13px] mx-auto py-4 "
+            className="w-full px-6 md:px-0 md:w-[45%] flex items-center justify-start gap-[13px] mx-auto py-7 "
           >
-            <img className="w-6 h-6 rounded-sm" src={user} alt="" />
+            <img className="w-8 h-8 rounded-sm" src={user} alt="" />
             <p>{i.text}</p>
           </section>
         ) : (
           <section
             key={index + Math.random()}
-            className="w-full px-6 md:px-0 bg-[#444654]"
+            className="w-full px-6 md:px-0 bg-[#444654] border-t-[1px] border-t-black/40"
           >
-            <div className="w-full md:w-[45%] flex items-center justify-start gap-[13px] mx-auto py-4">
-              <img className="w-6 h-6 rounded-sm" src={chatGpt} alt="" />
+            <div className="w-full md:w-[45%] flex items-center justify-start gap-[13px] mx-auto py-7">
+              <img className="w-8 h-8  rounded-sm" src={chatGpt} alt="" />
               <p>{i.text}</p>
             </div>
           </section>
         )
       )}
       {isLoading && (
-        <section className="w-full px-6 md:px-0 bg-[#444654]">
-          <div className="w-full md:w-[45%] flex items-start justify-start mx-auto py-4">
-            <img className="w-6 h-6 rounded-sm" src={chatGpt} alt="" />
+        <section className="w-full px-6 md:px-0 bg-[#444654] border-t-[1px] border-t-black/40">
+          <div className="w-full md:w-[45%] flex items-start justify-start mx-auto py-7 ">
+            <img className="w-8 h-8 rounded-sm" src={chatGpt} alt="" />
             <img
-              className="w-16 h-16 sm:w-28 sm:h-28 ml-7"
+              className="w-20 h-20 sm:w-32 sm:h-32 ml-9"
               src={sinking}
               alt=""
             />
-            <h1 className="text-lg sm:text-xl font-semibold">Sinking...</h1>
+            <h1 className="text-lg sm:text-2xl font-semibold">Sinking...</h1>
           </div>
         </section>
       )}
