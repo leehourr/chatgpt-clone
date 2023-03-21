@@ -5,8 +5,8 @@ import ChatContext from "../../context/Chat-context";
 const Index = () => {
   const chatCtx = useContext(ChatContext);
   return (
-    <div className="flex items-center w-full text-white text-[10px]">
-      <div className="hidden sm:flex w-[11.5rem] px-2 h-screen bg-[#202123]  flex-col items-center justify-between">
+    <div className="flex items-center w-full text-white text-[14px]">
+      <div className="hidden sm:flex w-[16.4rem] px-2 h-screen bg-[#202123]  flex-col items-center justify-between">
         <button
           onClick={chatCtx.removeChatHandler}
           className="w-full text-left pl-3 mt-2 py-2 border-[1px] border-white/30 rounded-md cursor-pointer hover:bg-white/5"
