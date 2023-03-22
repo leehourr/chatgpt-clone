@@ -13,5 +13,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FOOD_DELIVERY_APP_C9D92 }}'
-          projectId: food-delivery-app-c9d92
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHATGPT_CLONE_LEEHOUR99 }}'
+          projectId: chatgpt-clone-leehour99
