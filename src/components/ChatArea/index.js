@@ -3,7 +3,6 @@ import HomePage from "./HomePage";
 import ChatArea from "./ChatArea";
 import sendIcon from "../../assets/send_icon.png";
 import ChatContext from "../../context/Chat-context";
-import { askChatGpt } from "../../utils/api";
 
 const Index = () => {
   const inputRef = useRef("");
