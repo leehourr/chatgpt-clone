@@ -14,6 +14,7 @@ const Index = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setHasError(false);
     if (isLoading) return;
     const input = inputRef.current.value;
     if (input.trim() !== "") {
@@ -37,34 +38,32 @@ const Index = () => {
   };
 
   return (
-    <div className="bg-[#343541] w-full h-full flex flex-col pb-[3.2rem] items-center justify-between">
-      <header className="flex items-center justify-between mx-2"></header>
-      <section className="flex-grow flex items-center justify-center w-full overflow-y-auto">
+    <div className="bg-[#343541] w-full h-full flex flex-col pb-[3.2rem] items-center justify-between px-6 md:px-0">
+      <section className="flex-grow flex items-center justify-center w-full h-full overflow-y-auto pb-[1rem]">
         {chatCtx.newChat && <HomePage />}
         {!chatCtx.newChat && (
           <ChatArea isLoading={isLoading} hasError={hasError} />
         )}
       </section>
-      <section className="w-full px-6 md:w-[47.9rem] ">
-        <form
-          onSubmit={submitHandler}
-          className="relative w-full shadow-lg shadow-black/10"
-        >
-          <input
-            ref={inputRef}
-            defaultValue=""
-            className="w-full bg-[#40414F] py-3 rounded-md outline-none pl-3 text-[15px] "
-            type="text"
+
+      <form
+        onSubmit={submitHandler}
+        className="relative w-full md:w-[47.9rem] shadow-lg shadow-black/10"
+      >
+        <input
+          ref={inputRef}
+          defaultValue=""
+          className="w-full bg-[#40414F] py-3 rounded-md outline-none pl-3 text-[15px] "
+          type="text"
+        />
+        <button type="submit">
+          <img
+            className="absolute invert opacity-50 cursor-pointer top-2 hover:bg-white/90 right-2 w-7 p-1 rounded-md"
+            src={sendIcon}
+            alt=""
           />
-          <button type="submit">
-            <img
-              className="absolute invert opacity-50 cursor-pointer top-2 hover:bg-white/90 right-2 w-7 p-1 rounded-md"
-              src={sendIcon}
-              alt=""
-            />
-          </button>
-        </form>
-      </section>
+        </button>
+      </form>
     </div>
   );
 };
