@@ -37,8 +37,8 @@ const Index = ({ isLoading, hasError }) => {
             className="w-full px-6 md:px-0 bg-[#444654] border-t-[1px] border-t-black/40"
           >
             <div className="w-full md:w-[45%] flex items-start justify-start gap-[13px] mx-auto py-7">
-              <img className="w-8 h-8  rounded-sm" src={chatGpt} alt="" />
-              <p>{i.text}</p>
+              <img className="w-8 h-8 rounded-sm" src={chatGpt} alt="" />
+              <p className="whitespace-pre-line">{i.text}</p>
             </div>
           </section>
         )
