@@ -21,12 +21,23 @@ const Index = () => {
       chatCtx.addChatHandler({ sender: "user", text: input });
       try {
         inputRef.current.value = "";
-        const res = await askChatGpt(input);
-        console.log(res);
+        const res = await fetch("https://chatgpt-clone-leehour.herokuapp.com", {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: input }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log("Success:", data);
+            return data.data;
+          });
         chatCtx.addChatHandler({
           sender: "chatgpt",
-          text: res.data.choices[0].message.content,
+          text: res,
         });
+
         setIsLoading(false);
       } catch (error) {
         // console.log(error);
