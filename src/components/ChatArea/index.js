@@ -39,7 +39,7 @@ const Index = () => {
 
   return (
     <div className="bg-[#343541] w-full h-full flex flex-col pb-[3.2rem] items-center justify-between">
-      <section className="flex-grow flex items-center justify-center w-full h-full overflow-y-auto pb-[1rem] scrollbar-thin">
+      <section className="flex-grow flex pb-[1rem] items-center justify-center w-full h-full overflow-y-auto scrollbar-thin">
         {chatCtx.newChat && <HomePage />}
         {!chatCtx.newChat && (
           <div className="h-full w-full">
