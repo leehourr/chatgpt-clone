@@ -3,8 +3,8 @@ import user from "../../assets/user.jpg";
 import chatGpt from "../../assets/chatgpt-icon.png";
 import ChatContext from "../../context/Chat-context";
 import sinking from "../../assets/sinking.png";
-import ScrollIntoView from "react-scroll-into-view";
-import { useScrollTo } from "../../hook/ScrollTo";
+// import ScrollIntoView from "react-scroll-into-view";
+// import { useScrollTo } from "../../hook/ScrollTo";
 
 const Index = ({ isLoading, hasError }) => {
   const chatCtx = useContext(ChatContext);
@@ -13,8 +13,7 @@ const Index = ({ isLoading, hasError }) => {
   useMemo(() => {
     setMessages((prev) => [...prev, ...chatCtx.chat]);
   }, [chatCtx]);
-  // console.log(isLoading);
-  useScrollTo(0, 0);
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
